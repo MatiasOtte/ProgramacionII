@@ -18,7 +18,7 @@ import com.cerp.Vista.InicioVista;
  */
 
 /**
- * @class com.cerp.Main
+ * @class com.cerp.Main 
  * @brief Clase principal que permite interactuar con la aplicación de preguntas.
  * @Author Domingo Perez
  */

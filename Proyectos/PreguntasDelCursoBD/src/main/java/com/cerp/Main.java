@@ -32,7 +32,7 @@ public class Main {
     public static void main(String[] args) {
         
         // Crear instancia de FileHandler para cargar las preguntas desde preguntas.data
-        //FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("C:\\Users\\55747485\\IdeaProjects\\ProgramacionII\\Proyectos\\PreguntasDelCursoBD\\src\\main\\resources\\preguntas.data");
+        FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("C:\\Users\\55747485\\IdeaProjects\\ProgramacionII\\Proyectos\\PreguntasDelCursoBD\\src\\main\\resources\\preguntas.data");
 
         List<Pregunta> modelo = new ArrayList<>();
 

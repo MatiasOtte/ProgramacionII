@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.cerp.DataBaseHandler;
 import com.cerp.FileHandler;
 import com.cerp.Modelo.Pregunta;
 import com.cerp.Vista.AdminVista;
@@ -22,7 +24,8 @@ public class AdminControlador implements ActionListener {
     private List<Pregunta> modelo;
     private AdminVista vista;
     private InicioVista vistaInicio;
-    private FileHandler<Pregunta> fileHandlerC;
+    //private FileHandler<Pregunta> fileHandlerC;
+    private DataBaseHandler dataBaseHandler;
 
     public AdminControlador(List<Pregunta> modelo, AdminVista vista, InicioVista vistaInicio) {
         this.modelo = modelo;
@@ -36,13 +39,13 @@ public class AdminControlador implements ActionListener {
         // Cargar la primera pregunta en la vista
         this.vista.actualizarIdLabel(modelo.size());
         this.vista.actualizarPreguntaField();
-        this.vista.actualizarOpcionesField();
+        this.vista.actualizarIncorrectas1Field();
         this.vista.actualizarCorrectaField();
 
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInicio.getControlador().guardarPreguntas();
+                //vistaInicio.getControlador().guardarPreguntas();
                 System.exit(0);
             }
         });
@@ -54,20 +57,28 @@ public class AdminControlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.getConfirmarButton()) {
-            if (vista.getPreguntaField().getText().isEmpty() || vista.getOpcionesField().getText().isEmpty() || vista.getCorrectaField().getText().isEmpty()) {
+            if (vista.getPreguntaField().getText().isEmpty() || vista.getIncorrecta1Field().getText().isEmpty() || vista.getCorrectaField().getText().isEmpty()) {
                 vista.mostrarMensajeError("Debe completar todos los campos.");
             } else {
                 vista.getConfirmarButton().setEnabled(false); // Desactivar el botón de confirmar temporalmente
 
                 String pregunta = vista.getPreguntaField().getText();
-                String opcionesString = vista.getOpcionesField().getText();
+                String incorrecta1 = vista.getIncorrecta1Field().getText();
                 String correcta = vista.getCorrectaField().getText();
 
-                String[] opciones = opcionesString.split(",");
+                List<String> opciones = new ArrayList<>();
+                opciones.add(incorrecta1);
+                // van el resto de incorrectas
                 Pregunta nuevaPregunta = new Pregunta(modelo.size() + 1, pregunta, correcta, opciones);
 
                 this.modelo.add(nuevaPregunta);
                 //vistaInicio.getControlador().setModelo(modelo);
+                this.dataBaseHandler.insertarPregunta(nuevaPregunta);
+                this.dataBaseHandler.insertarRespuestas_Incorrectas(nuevaPregunta);
+
+
+
+                // aca hay que ver el tema de insercion en la BD
                 vistaInicio.getControlador().ActualizarControlador();
                 
                 System.out.println("DENTRO de ADMIN El tamanio es " + modelo.size());
@@ -78,7 +89,7 @@ public class AdminControlador implements ActionListener {
                 vista.getIdLabel().setText("ID de pregunta: " + (modelo.size() + 1));
 
                 vista.actualizarPreguntaField();
-                vista.actualizarOpcionesField();
+                vista.actualizarIncorrectas1Field();
                 vista.actualizarCorrectaField();
 
                 //cargar archivo con la lista de preguntas

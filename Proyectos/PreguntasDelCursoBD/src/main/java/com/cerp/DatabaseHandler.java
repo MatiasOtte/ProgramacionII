@@ -6,12 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler {
+public class DataBaseHandler {
     private static final String URL = "jdbc:mysql://localhost:3306/preguntas_mvc";
     private static final String USER = "root"; // Cambia esto si usas otro usuario
     private static final String PASSWORD = ""; // Asegúrate de configurar tu contraseña
 
-    public DatabaseHandler() {
+    public DataBaseHandler() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -50,12 +50,12 @@ public class DatabaseHandler {
 
     public void insertarRespuestas_Incorrectas(Pregunta pregunta) {
         String sql = "INSERT INTO respuestas_incorrectas (id_preg,id_resp,resp_inc) VALUES (?, ?, ?)";
-        for (int i = 0; i < pregunta.getOpciones().length; i++) {
+        for (int i = 0; i < pregunta.getOpciones().size(); i++) {
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
                  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, this.consultarUltimaPregunta());
                 stmt.setInt(2, i + 1);
-                stmt.setString(3, pregunta.getOpciones()[i]);
+                stmt.setString(3, pregunta.getOpciones().get(i));
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -70,14 +70,14 @@ public class InicioControlador implements ActionListener {
         this.modelo = modelo;
     }
 
-    public void guardarPreguntas() {
+    /*public void guardarPreguntas() {
         try {
-            vista.getFileHandler().listToFile(modelo);
+            //vista.getDatabaseHandler().
             System.out.println("******************\nEl tamanio es " + modelo.size() + "\nLista guardada correctamente");
         } catch (IOException err) {
             err.printStackTrace();
         }
-    }
+    }*/
 
     
 

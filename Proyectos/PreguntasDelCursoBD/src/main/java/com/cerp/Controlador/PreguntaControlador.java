@@ -48,7 +48,7 @@ public class PreguntaControlador implements ActionListener {
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInicio.getControlador().guardarPreguntas();
+                //vistaInicio.getControlador().guardarPreguntas();
                 System.exit(0);
             }
         });
@@ -72,7 +72,8 @@ public class PreguntaControlador implements ActionListener {
             if (i == correctButtonIndex) {
                 continue;
             }
-            String option = preguntaVisible.getOpciones()[optionIndex];
+            String option = preguntaVisible.getOpciones().get(optionIndex);
+
             vista.getRespuestaButtons()[i].setText(option);  
 
             optionIndex++;

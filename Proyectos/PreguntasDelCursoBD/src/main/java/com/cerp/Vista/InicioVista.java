@@ -8,7 +8,6 @@ import javax.swing.*;
 
 import com.cerp.*;
 import com.cerp.Controlador.InicioControlador;
-import com.cerp.Modelo.Pregunta;
 
 /**
  * @file InicioVista.java
@@ -23,63 +22,63 @@ import com.cerp.Modelo.Pregunta;
      private JMenuItem menuItemPreguntas;
      private JLabel numPreguntas; 
 
-    private FileHandler<Pregunta> fileHandler;
+    //private FileHandler<Pregunta> fileHandler;
+    private DataBaseHandler dataBaseHandler;
     private InicioControlador controlador;
- 
-     public InicioVista(FileHandler<Pregunta> fileHandler) {
+
+     public InicioVista(DataBaseHandler dataBaseHandler) {
          super("Menú Principal");
 
-         this.fileHandler = fileHandler;
-         
+         this.dataBaseHandler = dataBaseHandler;
+
          initComponents();
 
          this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                controlador.guardarPreguntas();
                 System.exit(0);
             }
         });
      }
- 
+
      private void initComponents() {
          // Crear la barra de menú y agregarla a la ventana
          menuBar = new JMenuBar();
          setJMenuBar(menuBar);
- 
+
          // Crear los elementos del menú y agregarlos directamente a la barra de menú
          menuItemAdmin = new JMenuItem("Administración");
          //menuItemAdmin.addActionListener(this);
          menuBar.add(menuItemAdmin);
- 
+
          menuItemPreguntas = new JMenuItem("Jugar");
          //menuItemPreguntas.addActionListener(this);
          menuBar.add(menuItemPreguntas);
- 
+
          // Panel para mostrar la pregunta
          JPanel inicioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
- 
+
          numPreguntas = new JLabel("Hay en el sistema " + 1001 +" preguntas");
          numPreguntas.setBounds(0, 180, 100, 200);
          inicioPanel.add(numPreguntas);
- 
+
          add(inicioPanel);
- 
+
          setSize(800, 400);
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          setLocationRelativeTo(null);
          setVisible(true);
      }
-  
 
 
-    
-    public FileHandler<Pregunta> getFileHandler() {
-        return fileHandler;
+
+
+    public DataBaseHandler getDatabaseHandler() {
+        return dataBaseHandler;
     }
 
-    public void setFileHandler(FileHandler<Pregunta> fileHandler) {
-        this.fileHandler = fileHandler;
+    public void setDataBaseHandler(DataBaseHandler dataBaseHandler) {
+        this.dataBaseHandler = dataBaseHandler;
     }
 
     public void setControlador(InicioControlador controlador) {

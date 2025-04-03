@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cerp.Controlador.InicioControlador;
+
 import com.cerp.Modelo.Pregunta;
 import com.cerp.Vista.InicioVista;
 
@@ -32,19 +33,16 @@ public class Main {
     public static void main(String[] args) {
         
         // Crear instancia de FileHandler para cargar las preguntas desde preguntas.data
-        FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("C:\\Users\\55747485\\IdeaProjects\\ProgramacionII\\Proyectos\\PreguntasDelCursoBD\\src\\main\\resources\\preguntas.data");
+        //FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("D:\\_VSCode\\_Programacion3-JAVA\\Curso-JAVA\\Proyectos\\PreguntasDelCursoMVC\\preguntas.data");
+        //FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("D:\\_VSCode\\_Programacion2-JAVA\\Proyectos\\PreguntasDelCursoBD\\src\\main\\resources\\preguntas.data");
+        DataBaseHandler dataBaseHandler = new DataBaseHandler();
 
-        List<Pregunta> modelo = new ArrayList<>();
+        List<Pregunta> modelo = new ArrayList<>();        
 
-        try {
-            modelo = fileHandler.fileToList();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
+        //modelo = fileHandler.fileToList();
+        modelo = dataBaseHandler.obtenerPreguntas();
+
 
         System.out.println("El tamanio es " + modelo.size());
 
@@ -52,19 +50,10 @@ public class Main {
         vistaInicio.setVisible(true);*/
 
          
-        InicioVista vistaInicio = new InicioVista(fileHandler);
+        //InicioVista vistaInicio = new InicioVista(fileHandler);
+        InicioVista vistaInicio = new InicioVista(dataBaseHandler);
         InicioControlador controlador = new InicioControlador(modelo, vistaInicio);
         vistaInicio.setControlador(controlador);
-
-        /* 
-        // Crear instancia de AdminControlador y mostrar vista AdminVista
-        AdminVista vistaAdmin = new AdminVista(fileHandler);
-        AdminControlador controladorAdmin = new AdminControlador(vistaAdmin);
-        // Asociar el controlador como listener de los componentes de la vista
-        vistaAdmin.getConfirmarButton().addActionListener(controladorAdmin);
-        vistaAdmin.getAtrasButton().addActionListener(controladorAdmin);
-        vistaAdmin.getLimpiarButton().addActionListener(controladorAdmin);*/
-
         
     }
 }

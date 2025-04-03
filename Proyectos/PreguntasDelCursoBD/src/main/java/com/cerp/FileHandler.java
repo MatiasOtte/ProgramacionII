@@ -37,7 +37,7 @@ public class FileHandler<T> {
      */
     @SuppressWarnings("unchecked")
     public List<T> fileToList() throws IOException, ClassNotFoundException {
-        List<T> miLista = new ArrayList<T>();
+        List<T> miLista = new ArrayList<>();
         
         FileInputStream fileInputStream = new FileInputStream(filename);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

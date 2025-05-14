@@ -1,0 +1,17 @@
+{
+  "Ahorcado": {
+    "nombre": "Ahorcado",
+    "descripcion": "En este juego, competirás contra otro para lograr encontrar una palabra de Sistemas operativos",
+    "instrucciones": [
+      "Selecciona un nombre escribiendo en los espacios de judaro 1 y jugador 2",
+      "Elegí una letra por turno para intentar encontrar la palabra oculta.",
+      "Solo hay seis oportunidades de fallar",
+      "Al finalizar puedes elegir repetir la partida o volver al menú"
+    ],
+    "temas": [
+      "Programación", "Sistemas Operativos"
+    ],
+	"autor": "Matías Otte",
+    "url": "https://game.1001problemas.com/juegos/Ahorcado/"
+  }
+}

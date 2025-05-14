@@ -23,10 +23,10 @@ import com.cerp.Controlador.InicioControlador;
      private JLabel numPreguntas; 
 
     //private FileHandler<Pregunta> fileHandler;
-    private DataBaseHandler dataBaseHandler;
+    private DatabaseHandler dataBaseHandler;
     private InicioControlador controlador;
 
-     public InicioVista(DataBaseHandler dataBaseHandler) {
+     public InicioVista(DatabaseHandler dataBaseHandler) {
          super("Menú Principal");
 
          this.dataBaseHandler = dataBaseHandler;
@@ -73,11 +73,11 @@ import com.cerp.Controlador.InicioControlador;
 
 
 
-    public DataBaseHandler getDatabaseHandler() {
+    public DatabaseHandler getDatabaseHandler() {
         return dataBaseHandler;
     }
 
-    public void setDataBaseHandler(DataBaseHandler dataBaseHandler) {
+    public void setDataBaseHandler(DatabaseHandler dataBaseHandler) {
         this.dataBaseHandler = dataBaseHandler;
     }
 

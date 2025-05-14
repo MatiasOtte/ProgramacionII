@@ -6,12 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBaseHandler {
+public class DatabaseHandler {
     private static final String URL = "jdbc:mysql://localhost:3306/preguntas_mvc";
     private static final String USER = "root"; // Cambia esto si usas otro usuario
     private static final String PASSWORD = ""; // Asegúrate de configurar tu contraseña
 
-    public DataBaseHandler() {
+    public DatabaseHandler() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {

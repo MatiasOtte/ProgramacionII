@@ -8,11 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cerp.DataBaseHandler;
-import com.cerp.FileHandler;
-import com.cerp.Modelo.Pregunta;
-import com.cerp.Vista.AdminVista;
-import com.cerp.Vista.InicioVista;
+import com.cerp.DatabaseHandler;
 import com.cerp.Modelo.Pregunta;
 import com.cerp.Vista.AdminVista;
 import com.cerp.Vista.InicioVista;
@@ -25,7 +21,7 @@ public class AdminControlador implements ActionListener {
     private AdminVista vista;
     private InicioVista vistaInicio;
     //private FileHandler<Pregunta> fileHandlerC;
-    private DataBaseHandler dataBaseHandler;
+    private DatabaseHandler dataBaseHandler;
 
     public AdminControlador(List<Pregunta> modelo, AdminVista vista, InicioVista vistaInicio) {
         this.modelo = modelo;
@@ -75,6 +71,7 @@ public class AdminControlador implements ActionListener {
                 //vistaInicio.getControlador().setModelo(modelo);
                 this.dataBaseHandler.insertarPregunta(nuevaPregunta);
                 this.dataBaseHandler.insertarRespuestas_Incorrectas(nuevaPregunta);
+                
 
 
 
